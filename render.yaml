@@ -1,0 +1,16 @@
+services:
+  # A Docker web service
+  - type: web
+    name: ecosortai
+    env: docker
+    region: ohio  # Choose a region close to your users
+    plan: free    # Use the free plan
+    healthCheckPath: /api/model-status
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true  # Automatically generate a secure secret key
+      - key: MODEL_PATH
+        value: models/
+      - key: FLASK_ENV
+        value: production
+    autoDeploy: true  # Enable auto-deploy on push to the connected repo
