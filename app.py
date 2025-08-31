@@ -54,9 +54,10 @@ def create_dummy_model():
     model.compile(optimizer='adam', loss='binary_crossentropy')
     return model
 
-# Function to download models from cloud storage if needed
+# Function to download models from Google Drive
 def download_model_from_cloud(model_name):
     import requests
+    import re
     
     model_path = os.path.join(MODEL_FOLDER, model_name)
     # Skip if model already exists locally
@@ -65,18 +66,45 @@ def download_model_from_cloud(model_name):
         return True
     
     try:
-        # Models are temporarily hosted in a public GitHub repository for this example
-        # In a real application, use a proper cloud storage service
-        base_url = "https://huggingface.co/datasets/sample-datasets/placeholder-models/resolve/main/"
-        url = f"{base_url}{model_name}"
+        # Google Drive file IDs for each model
+        drive_file_ids = {
+            'vgg16_waste_classification_tf.h5': 'YOUR_VGG16_FILE_ID',
+            'waste_classification22_model.h5': 'YOUR_RESNET50_FILE_ID',
+            'inceptionv3_waste_classification_tf.h5': 'YOUR_INCEPTION_FILE_ID'
+        }
         
-        print(f"Downloading {model_name} from cloud storage...")
-        response = requests.get(url, stream=True)
+        # Get the file ID for the requested model
+        file_id = drive_file_ids.get(model_name)
+        if not file_id:
+            print(f"No Google Drive file ID configured for {model_name}")
+            return False
+        
+        # Google Drive direct download URL format
+        download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+        
+        # For larger files, we need to handle the confirmation page
+        print(f"Downloading {model_name} from Google Drive...")
+        session = requests.Session()
+        
+        # First request to get the confirmation token if needed
+        response = session.get(download_url, stream=True)
+        
+        # Check if this is a large file that needs confirmation
+        confirmation_token = None
+        for chunk in response.iter_content(chunk_size=4096):
+            if b'confirm=' in chunk:
+                confirmation_token = re.search(b'confirm=([0-9A-Za-z]+)', chunk).group(1).decode('utf-8')
+                break
+        
+        # If we need confirmation, make a second request
+        if confirmation_token:
+            download_url = f"{download_url}&confirm={confirmation_token}"
+            response = session.get(download_url, stream=True)
         
         # Check if the request was successful
         if response.status_code == 200:
             with open(model_path, 'wb') as f:
-                for chunk in response.iter_content(chunk_size=1024):
+                for chunk in response.iter_content(chunk_size=32768):
                     if chunk:
                         f.write(chunk)
             print(f"Successfully downloaded {model_name}")

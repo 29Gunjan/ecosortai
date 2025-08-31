@@ -6,17 +6,59 @@ This directory contains the trained machine learning models used by EcoSortAI fo
 
 Three models are required for the application to function properly:
 
-1. **VGG16 Model**
-   - Filename: `vgg16_waste_classification_tf.h5`
-   - Size: ~85MB
+### VGG16 Model
+- Filename: `vgg16_waste_classification_tf.h5`
+- Size: ~85MB
 
-2. **ResNet50 Model**
-   - Filename: `waste_classification22_model.h5`
-   - Size: ~97MB
+### ResNet50 Model
+- Filename: `waste_classification22_model.h5` 
+- Size: ~97MB
 
-3. **InceptionV3 Model**
-   - Filename: `inceptionv3_waste_classification_tf.h5`
-   - Size: ~90MB
+### InceptionV3 Model
+- Filename: `inceptionv3_waste_classification_tf.h5`
+- Size: ~90MB
+
+## Google Drive Hosting Instructions
+
+For deployment on platforms with storage limitations, we recommend hosting the models on Google Drive:
+
+1. **Upload models to Google Drive**:
+   - Create a folder called "EcoSortAI-Models"
+   - Upload all three model files to this folder
+
+2. **Make models accessible**:
+   - Right-click each model file → Share → "Anyone with the link" → "Viewer"
+   - Copy the sharing link for each model
+
+3. **Configure your application**:
+   - Run the setup script: `python setup_drive_models.py`
+   - Paste the sharing URLs when prompted
+   - The script will automatically update your application
+
+4. **Deploy your application**:
+   - Follow the deployment instructions in DEPLOYMENT_GUIDE.md
+   - Your application will download models from Google Drive when needed
+
+## Local Development
+
+For local development, you can either:
+
+1. **Place model files directly in this directory**:
+   - The application will use local files if available
+
+2. **Configure Google Drive integration**:
+   - Run `python setup_drive_models.py` as described above
+   - Models will be downloaded from Google Drive on first run
+
+## Verification
+
+To verify that your models are correctly configured, run:
+
+```python
+python check_models.py
+```
+
+This script will check if models are available locally or can be downloaded from Google Drive.
 
 ## How to Set Up the Models
 
