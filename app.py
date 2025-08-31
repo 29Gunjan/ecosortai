@@ -68,9 +68,11 @@ def download_model_from_cloud(model_name):
     try:
         # Google Drive file IDs for each model
         drive_file_ids = {
-            'vgg16_waste_classification_tf.h5': 'YOUR_VGG16_FILE_ID',
-            'waste_classification22_model.h5': 'YOUR_RESNET50_FILE_ID',
-            'inceptionv3_waste_classification_tf.h5': 'YOUR_INCEPTION_FILE_ID'
+            'vgg16_waste_classification_tf.h5': '1jwpyS7kOD5GpMmszPuCoEkFkwnMOx-1-',
+            'waste_classification22_model.h5': '19KLNDSrPqYqBfNIwYwsZxouCW4zRK47y',
+            'inceptionv3_waste_classification_tf.h5': '17WY01-emhtiC2WvDecKYw680GlBGe0Gq',
+            'plastic_classifier_model.h5': '1babBBQeQTT-CADo-WFEDBeMxVReEJAwb',
+            'recyclable_classifier_model.h5': '14euZ5Ka8TaVM56YUwxiT8RLt94LTLSrd'
         }
         
         # Get the file ID for the requested model

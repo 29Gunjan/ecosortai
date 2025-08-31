@@ -8,7 +8,9 @@ MODEL_FOLDER = "models"
 MODEL_FILES = [
     "vgg16_waste_classification_tf.h5",
     "waste_classification22_model.h5",
-    "inceptionv3_waste_classification_tf.h5"
+    "inceptionv3_waste_classification_tf.h5",
+    "plastic_classifier_model.h5",
+    "recyclable_classifier_model.h5"
 ]
 
 def check_local_models():

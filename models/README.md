@@ -4,19 +4,30 @@ This directory contains the trained machine learning models used by EcoSortAI fo
 
 ## Required Models
 
-Three models are required for the application to function properly:
+Five models are required for the application to function properly:
 
 ### VGG16 Model
 - Filename: `vgg16_waste_classification_tf.h5`
 - Size: ~85MB
+- Google Drive Link: [Download](https://drive.google.com/file/d/1jwpyS7kOD5GpMmszPuCoEkFkwnMOx-1-/view?usp=sharing)
 
 ### ResNet50 Model
 - Filename: `waste_classification22_model.h5` 
 - Size: ~97MB
+- Google Drive Link: [Download](https://drive.google.com/file/d/19KLNDSrPqYqBfNIwYwsZxouCW4zRK47y/view?usp=sharing)
 
 ### InceptionV3 Model
 - Filename: `inceptionv3_waste_classification_tf.h5`
 - Size: ~90MB
+- Google Drive Link: [Download](https://drive.google.com/file/d/17WY01-emhtiC2WvDecKYw680GlBGe0Gq/view?usp=sharing)
+
+### Plastic Classifier Model
+- Filename: `plastic_classifier_model.h5`
+- Google Drive Link: [Download](https://drive.google.com/file/d/1babBBQeQTT-CADo-WFEDBeMxVReEJAwb/view?usp=sharing)
+
+### Recyclable Classifier Model
+- Filename: `recyclable_classifier_model.h5`
+- Google Drive Link: [Download](https://drive.google.com/file/d/14euZ5Ka8TaVM56YUwxiT8RLt94LTLSrd/view?usp=sharing)
 
 ## Google Drive Hosting Instructions
 
